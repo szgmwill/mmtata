@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <!-- 图片展示时的标题栏 -->
+    <RelativeLayout
+        android:id="@+id/ta_title_img_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/common_top_title_bar_height"
+        android:layout_alignParentTop="true"
+        android:background="@color/ta_main_topbar_bg"
+        android:visibility="visible">
+
+        <RelativeLayout
+            android:id="@+id/ta_rl_topbar_back"
+            android:layout_width="70dp"
+            android:layout_height="fill_parent"
+            android:clickable="true"
+            android:background="@drawable/ta_topbar_selector">
+
+            <ImageView
+                android:id="@+id/ta_iv_topbar_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ta_topbar_back"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:scaleType="centerInside"/>
+
+            <TextView
+                android:id="@+id/ta_tv_topbar_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/ta_iv_topbar_back"
+                android:text="返回"
+                android:textColor="@color/white"
+                android:textSize="18sp"/>
+
+        </RelativeLayout>
+
+        <!-- 图片展示时的数量 -->
+        <TextView
+            android:id="@+id/ta_tv_topbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="0/0"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
+
+
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ta_title_img_bar"
+        android:id="@+id/ta_vp_display_image"/>
+
+
+</RelativeLayout>

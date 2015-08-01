@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 用户扩展功能操作 -->
+<mapper namespace="com.mmtata.im.server.dao.ExtendDao">
+    <resultMap id="UserReportResultMap" type="com.mmtata.im.server.bean.UserReport">
+        <result property="pid" column="pid" />
+	    <result property="userId" column="user_id" />
+		<result property="targetId" column="target_id" />
+		<result property="type" column="type" />
+		<result property="status" column="status" />
+		<result property="remark" column="remark" />
+		<result property="create_time" column="createTime" />
+		
+	</resultMap>
+	
+    <sql id="t_ta_user_report_column">
+		pid, user_id, target_id, type, remark, status, create_time
+	</sql>
+    
+    <select id="queryUserReport" resultMap="UserReportResultMap">
+        select
+        	<include refid="t_ta_user_report_column" />
+       	from
+       		mmtata.t_ta_extend_report
+       	<where>
+        	<if test="userId > 0">user_id = #{userId}</if>
+        	<if test="targetId > 0"> and target_id = #{targetId}</if>
+		</where>
+        
+    </select>
+
+    <insert id="addNewUserReport" parameterType="com.mmtata.im.server.bean.UserReport"
+        useGeneratedKeys="true" keyProperty="pid">
+        INSERT INTO
+		mmtata.t_ta_extend_report
+		(
+		user_id,
+		target_id,
+		type,
+		remark,
+		status,
+		create_time
+		)
+		VALUES
+		(
+		#{userId},
+		#{targetId},
+		#{type},
+		#{remark},
+		0,
+		now()
+		)
+        
+    </insert>
+</mapper>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 提现设置页 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include android:id="@+id/ta_include_topbar"
+        layout="@layout/ta_main_topbar"/>
+
+    <RelativeLayout
+        android:id="@+id/ta_rl_withdraw_setting_zfb"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/ta_include_topbar"
+        android:background="@drawable/btn_list_item_bg"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:clickable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="支付宝钱包"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/ta_rl_withdraw_edit_zfb"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/ta_rl_withdraw_setting_zfb">
+
+        <EditText
+            android:id="@+id/ta_et_withdraw_zfb_account"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:hint="请填写支付宝账户"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            />
+
+        <EditText
+            android:id="@+id/ta_et_withdraw_zfb_nick"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/ta_et_withdraw_zfb_account"
+            android:hint="请填写账户对应姓名"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/ta_rl_withdraw_setting_wx"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/ta_rl_withdraw_edit_zfb"
+        android:background="@drawable/btn_list_item_bg"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:clickable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="微信钱包"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/ta_rl_withdraw_setting_wx">
+
+        <EditText
+            android:id="@+id/ta_tv_withdraw_setting_wx"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:hint="请填写微信账户名"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>

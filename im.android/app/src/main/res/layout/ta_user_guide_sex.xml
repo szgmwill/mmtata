@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--用户注册性别选择-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <!--头部bar-->
+    <include android:id="@+id/ta_user_guide_sex_topbar"
+        layout="@layout/ta_main_topbar" />
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="30dp">
+
+        <!--欢迎语-->
+        <LinearLayout
+            android:id="@+id/ta_ll_welcome_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="欢迎"
+                android:textSize="20sp"
+                android:textColor="@color/bg_headerbar_spinner_press"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:id="@+id/tv_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="张木头"
+                android:textColor="@color/black"
+                android:textSize="22sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="请选择性别"
+                android:textSize="20sp"
+                android:textColor="@color/bg_headerbar_spinner_press"
+                />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="170dp"
+        android:layout_centerHorizontal="true">
+
+
+           <RadioGroup
+               android:id="@+id/ta_radiogroup_sex"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal">
+
+               <RadioButton
+                   android:id="@+id/ta_radio_user_sex_boy"
+                   android:layout_width="140dp"
+                   android:layout_height="40dp"
+                   android:text="男孩"
+                   android:button="@null"
+                   android:textSize="20sp"
+                   android:gravity="center"
+                   android:background="@drawable/ta_user_tab_selector_boy"/>
+
+               <RadioButton
+                   android:id="@+id/ta_radio_user_sex_girl"
+                   android:layout_width="140dp"
+                   android:layout_height="40dp"
+                   android:layout_marginLeft="30dp"
+                   android:text="女孩"
+                   android:button="@null"
+                   android:textSize="20sp"
+                   android:gravity="center"
+                   android:background="@drawable/ta_user_tab_selector_girl"/>
+
+           </RadioGroup>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp">
+
+
+        <Button
+            android:id="@+id/ta_user_tab_submit"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:text="下一步"
+            android:textSize="25sp"
+            android:background="@drawable/ta_btn_girl_selector"/>
+
+    </RelativeLayout>
+</RelativeLayout>

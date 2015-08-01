@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 后台管理员DB信息表 -->
+<mapper namespace="com.mmtata.im.server.dao.AdminDao">
+    <resultMap id="TabResultMap" type="com.mmtata.im.server.bean.TabInfo">
+	    <result property="tab_id" column="tab_id" />
+		<result property="tab_type" column="tab_type" />
+		<result property="tab_name" column="tab_name" />
+		<result property="create_time" column="create_time" />
+		<result property="del_flag" column="del_flag" />
+	</resultMap>
+	
+    <sql id="t_ta_tab_column">
+		tab_id, tab_type, tab_name, create_time, del_flag
+	</sql>
+    
+    <select id="queryTabList" resultMap="TabResultMap">
+        select
+        	<include refid="t_ta_tab_column" />
+       	from
+       		mmtata.t_ta_operate_tab
+       	<where>
+        	<if test="type != null and type > 0">tab_type = #{type}</if>
+		</where>
+    </select>
+    
+    
+    <!-- 查询当前apk的版本信息 -->
+    <select id="queryCurrentVersionInfo" resultType="com.mmtata.im.server.bean.VersionUpdate">
+        select
+        	version_code,
+        	version_name,
+        	apk_file_name,
+        	version_type,
+        	create_time
+        from
+        	mmtata.t_ta_apk_update
+        order by version_code desc
+        limit 1
+    </select>
+</mapper>

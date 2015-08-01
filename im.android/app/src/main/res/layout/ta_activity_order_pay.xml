@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--订单支付确认页-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include android:id="@+id/ta_include_topbar"
+        layout="@layout/ta_main_topbar" />
+
+    <!-- 以下每一个relative 都代表功能点一行内容  -->
+    <RelativeLayout
+        android:id="@+id/ta_rl_order_pay_title"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/ta_include_topbar"
+        android:background="@drawable/btn_list_item_bg"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/ta_tv_order_pay_display_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="订单信息确认"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/ta_tv_order_pay_order_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="111111111"
+            android:layout_below="@+id/ta_tv_order_pay_display_title"
+            android:layout_centerInParent="true"/>
+
+
+        <!--每一行之间的分隔带-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#dadada" />
+    </RelativeLayout>
+
+    <!-- 以下每一个relative 都代表功能点一行内容  -->
+    <RelativeLayout
+        android:id="@+id/ta_rl_order_pay_nick"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/ta_rl_order_pay_title"
+        android:background="@drawable/btn_list_item_bg"
+        android:clickable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="购买用户名称"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/ta_tv_order_pay_nick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="昵称"
+            android:textColor="@color/dark_gray"
+            android:textSize="16sp" />
+
+        <!--每一行之间的分隔带-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#dadada" />
+    </RelativeLayout>
+
+    <!-- 以下每一个relative 都代表功能点一行内容  -->
+    <RelativeLayout
+        android:id="@+id/ta_rl_order_pay_price"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/ta_rl_order_pay_nick"
+        android:background="@drawable/btn_list_item_bg"
+        android:clickable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="聊天服务单价"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+
+        <include android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            layout="@layout/ta_item_unit_price" />
+
+        <!--每一行之间的分隔带-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#dadada" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/ta_rl_order_pay_buynum"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/ta_rl_order_pay_price"
+        android:background="@drawable/btn_list_item_bg"
+        android:clickable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="购买数量"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/ta_tv_order_pay_buynum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="1"
+            android:textColor="@color/dark_gray"
+            android:textSize="16sp" />
+
+        <!--每一行之间的分隔带-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#dadada" />
+    </RelativeLayout>
+
+    <!-- 以下每一个relative 都代表功能点一行内容  -->
+    <RelativeLayout
+        android:id="@+id/ta_rl_order_pay_totalamt"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/ta_rl_order_pay_buynum"
+        android:background="@drawable/btn_list_item_bg"
+        android:clickable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="订单总价"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/ta_tv_order_pay_totalamt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="100元"
+            android:textColor="@color/red"
+            android:textSize="16sp" />
+
+        <!--每一行之间的分隔带-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#dadada" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/ta_rl_order_pay_balance"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/ta_rl_order_pay_totalamt"
+        android:background="@drawable/btn_list_item_bg"
+        android:clickable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="账户余额"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/ta_tv_order_pay_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="300元"
+            android:textColor="@color/red"
+            android:textSize="16sp" />
+
+        <!--每一行之间的分隔带-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#dadada" />
+    </RelativeLayout>
+
+    <!--条件筛选面板-->
+    <RelativeLayout
+        android:id="@+id/ta_rl_pay_choice"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <Button
+                android:id="@+id/ta_btn_pay_wx"
+                android:layout_width="fill_parent"
+                android:layout_height="49dp"
+                android:text="微信支付"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:background="@drawable/ta_btn_boy_selector"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#dadada" />
+            <Button
+                android:id="@+id/ta_btn_pay_zfb"
+                android:layout_width="fill_parent"
+                android:layout_height="49dp"
+                android:text="支付宝支付"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:background="@drawable/ta_btn_girl_selector"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#dadada" />
+
+            <Button
+                android:id="@+id/ta_btn_pay_acct"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:text="余额支付"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:background="@drawable/ta_btn_pink_selector"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#dadada" />
+
+            <Button
+                android:id="@+id/ta_btn_pay_cancel"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:text="取消"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:background="@drawable/ta_btn_cancel_selector"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

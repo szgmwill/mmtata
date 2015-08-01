@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--用户更新资料页-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg_gray">
+
+    <include android:id="@+id/ta_include_my_detail"
+        layout="@layout/ta_main_topbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ta_include_my_detail"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/ta_my_detail_rl_avatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <!--网格填充头像列表-->
+                <com.tata.imta.view.MyGridView
+                    android:id="@+id/ta_gv_my_detail_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:verticalSpacing="5dp"
+                    android:horizontalSpacing="5dp"
+                    android:numColumns="4"
+                    android:visibility="visible"/>
+            </RelativeLayout>
+
+            <!-- 以下每一个relative 都代表功能点一行内容  -->
+            <RelativeLayout
+                android:id="@+id/ta_my_detail_rl_nick"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/btn_list_item_bg"
+                android:clickable="true">
+
+                <TextView
+                    android:layout_width="85dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="10dp"
+                    android:text="用户昵称"
+                    android:textSize="16sp"
+                    android:textColor="@color/gray"/>
+
+                <TextView
+                    android:id="@+id/ta_my_detail_tv_nick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="测试"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="25dp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"/>
+
+                <RelativeLayout
+                    android:layout_width="20dp"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentRight="true">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ta_profile_more"
+                        android:layout_centerInParent="true"/>
+
+                </RelativeLayout>
+
+                <!--每一行之间的分隔带-->
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/ta_dialog_content_split" />
+            </RelativeLayout>
+
+            <!-- 以下每一个relative 都代表功能点一行内容  -->
+            <RelativeLayout
+                android:id="@+id/ta_my_detail_rl_birth"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/btn_list_item_bg"
+                android:clickable="true">
+
+                <TextView
+                    android:layout_width="85dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="10dp"
+                    android:text="出生日期"
+                    android:textSize="16sp"
+                    android:textColor="@color/gray"/>
+
+                <TextView
+                    android:id="@+id/ta_my_detail_tv_birth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1988-10-10"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="25dp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"/>
+
+                <RelativeLayout
+                    android:layout_width="20dp"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentRight="true">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ta_profile_more"
+                        android:layout_centerInParent="true"/>
+
+                </RelativeLayout>
+
+                <!--每一行之间的分隔带-->
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/ta_dialog_content_split" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ta_my_detail_rl_city"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/btn_list_item_bg"
+                android:clickable="true">
+
+                <TextView
+                    android:layout_width="85dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="10dp"
+                    android:text="城市"
+                    android:textSize="16sp"
+                    android:textColor="@color/gray"/>
+
+                <TextView
+                    android:id="@+id/ta_my_detail_tv_city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="深圳市"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="25dp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"/>
+
+                <RelativeLayout
+                    android:layout_width="20dp"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentRight="true">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ta_profile_more"
+                        android:layout_centerInParent="true"/>
+
+                </RelativeLayout>
+
+                <!--每一行之间的分隔带-->
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/ta_dialog_content_split" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ta_my_detail_rl_sign"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/btn_list_item_bg"
+                android:clickable="true">
+
+                <TextView
+                    android:layout_width="85dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="10dp"
+                    android:text="个性签名"
+                    android:textSize="16sp"
+                    android:textColor="@color/gray"/>
+
+                <TextView
+                    android:id="@+id/ta_my_detail_tv_sign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我有我个性"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="25dp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"/>
+
+                <RelativeLayout
+                    android:layout_width="20dp"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentRight="true">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ta_profile_more"
+                        android:layout_centerInParent="true"/>
+
+                </RelativeLayout>
+
+                <!--每一行之间的分隔带-->
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/ta_dialog_content_split" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ta_my_detail_rl_career"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="35dp"
+                android:background="@drawable/btn_list_item_bg"
+                android:clickable="true">
+
+                <TextView
+                    android:layout_width="85dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="10dp"
+                    android:text="职业"
+                    android:textSize="16sp"
+                    android:textColor="@color/gray"/>
+
+                <TextView
+                    android:id="@+id/ta_my_detail_tv_career"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="模特"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="25dp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"/>
+
+                <RelativeLayout
+                    android:layout_width="20dp"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentRight="true">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ta_profile_more"
+                        android:layout_centerInParent="true"/>
+
+                </RelativeLayout>
+
+                <!--每一行之间的分隔带-->
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/ta_dialog_content_split" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ta_my_detail_rl_tab"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_height="50dp"
+                android:background="@drawable/btn_list_item_bg"
+                android:clickable="true">
+
+                <TextView
+                    android:id="@+id/ta_my_detail_tv_tab"
+                    android:layout_width="85dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="10dp"
+                    android:text="标签"
+                    android:textSize="16sp"
+                    android:textColor="@color/gray"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="重新设置"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="25dp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"/>
+
+                <RelativeLayout
+                    android:layout_width="20dp"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentRight="true">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ta_profile_more"
+                        android:layout_centerInParent="true"/>
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+            <!--网格填充头像列表-->
+            <com.tata.imta.view.MyGridView
+                android:id="@+id/ta_gv_my_detail_tab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:verticalSpacing="5dp"
+                android:horizontalSpacing="5dp"
+                android:numColumns="4"
+                android:visibility="visible"/>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</RelativeLayout>

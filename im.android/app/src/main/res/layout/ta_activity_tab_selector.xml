@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--用户标签选择页-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include android:id="@+id/ta_include_topbar"
+        layout="@layout/ta_main_topbar" />
+
+    <RelativeLayout
+        android:id="@+id/ta_rl_tab_editor"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/ta_include_topbar"
+        android:background="@color/white">
+
+        <!--<EditText
+            android:id="@+id/ta_et_tab_input"
+            android:layout_width="250dp"
+            android:layout_height="fill_parent"
+            android:hint="添加我喜欢的专属标签(不超10字)"
+            android:textColor="@color/black"
+            android:textSize="15sp"/>-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/black"
+            android:text="请选择以下我喜欢的专属标签"
+            android:textSize="15sp"/>
+
+        <RelativeLayout
+            android:id="@+id/ta_rl_tab_btn_confirm"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@color/ta_main_bg">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="确定"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/ta_rl_tab_type_select"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_below="@+id/ta_rl_tab_editor"
+        android:layout_marginBottom="10dp"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/ta_rl_tab_type"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="类型"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"/>
+
+                <!--每一行之间的分隔带-->
+                <View
+                    android:id="@+id/ta_view_type_selected"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.2dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/ta_main_bg"
+                    android:visibility="visible"/>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/ta_rl_tab_ability"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="能力"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"/>
+                <!--每一行之间的分隔带-->
+                <View
+                    android:id="@+id/ta_view_ability_selected"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.2dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/ta_main_bg"
+                    android:visibility="gone"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ta_rl_tab_lan"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="语言"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"/>
+
+                <View
+                    android:id="@+id/ta_view_lan_selected"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.2dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/ta_main_bg"
+                    android:visibility="gone"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_below="@+id/ta_rl_tab_type_select">
+
+        <!-- 标签列表 ,动态加载 -->
+        <ListView
+            android:id="@+id/ta_lv_tablist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="@color/common_lucency"
+            android:divider="@null"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

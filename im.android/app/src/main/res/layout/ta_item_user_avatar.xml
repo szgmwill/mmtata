@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--个人头像单元布局-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <com.tata.imta.view.RoundImageView
+        android:id="@+id/ta_item_iv_avatar"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ta_avatar_default"/>
+
+</RelativeLayout>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 单聊发送文字消息 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
+
+    <TextView
+        android:id="@+id/ta_chat_row_send_timestamp"
+        style="@style/chat_text_data_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chat_demo_timestamp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_chat_activity" >
+
+        <ImageView
+            android:id="@+id/ta_chat_row_send_iv_avatar"
+            android:layout_width="@dimen/size_avatar"
+            android:layout_height="@dimen/size_avatar"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/margin_chat_activity"
+            android:background="@drawable/ta_avatar_default" />
+
+        <TextView
+            android:maxWidth="225dp"
+            android:id="@+id/ta_chat_row_send_tv_text"
+            style="@style/chat_content_data_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left|center"
+            android:text="你好啊"
+            android:lineSpacingExtra="2dp"
+            android:autoLink="web"
+            android:layout_marginRight="@dimen/margin_chat_activity"
+            android:layout_toLeftOf="@id/ta_chat_row_send_iv_avatar"
+            android:background="@drawable/ta_chat_bg_selector" />
+
+        <!-- 发送状态图标 -->
+        <ImageView
+            android:id="@+id/ta_chat_row_send_iv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/ta_chat_row_send_tv_text"
+            android:clickable="true"
+            android:src="@drawable/msg_state_failed_resend"
+            android:visibility="gone" />
+
+        <!-- 已读状态 -->
+        <TextView
+            android:id="@+id/ta_chat_row_send_tv_ack"
+            style="@style/chat_text_name_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/text_ack_msg"
+            android:textSize="12sp"
+            android:layout_toLeftOf="@id/ta_chat_row_send_tv_text"
+            android:visibility="gone"/>
+
+        <!-- 已发送 -->
+        <TextView
+            android:id="@+id/ta_chat_row_send_tv_delivered"
+            style="@style/chat_text_name_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/text_delivered_msg"
+            android:layout_toLeftOf="@id/ta_chat_row_send_tv_text"
+            android:visibility="gone"/>
+
+        <!--发送时的瞬时进度圈-->
+        <ProgressBar
+            android:id="@+id/ta_chat_row_send_pb_sending"
+            android:visibility="visible"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/ta_chat_row_send_tv_text" />
+    </RelativeLayout>
+
+</LinearLayout>

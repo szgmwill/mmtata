@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 底部的tab菜单选项 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_bottom"
+    android:layout_width="match_parent"
+    android:layout_height="54dp"
+    android:layout_alignParentBottom="true"
+    android:background="@color/black"
+    android:orientation="horizontal"
+    android:gravity="center_vertical">
+
+    <!-- 每一个tab都有三个控件组成 -->
+    <RelativeLayout
+        android:id="@+id/tab_layout_find"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="3dp"
+        android:onClick="onTabClicked">
+
+
+        <ImageView
+            android:id="@+id/tab_iv_find"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:layout_centerHorizontal="true"
+            android:focusable="false"
+            android:scaleType="centerInside"
+            android:src="@drawable/ta_footer_image_find_selector" />
+
+        <TextView
+            android:id="@+id/tab_tv_find"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tab_iv_find"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="3dp"
+            android:text="发现"
+            android:textColor="@color/ta_color_text_normal"
+            android:textSize="12sp" />
+
+        <!--<TextView
+            android:id="@+id/unread_tv_find"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/unread_count_bg"
+            android:gravity="center"
+            android:text="7"
+            android:textColor="@android:color/white"
+            android:textSize="12sp" />-->
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/tab_layout_chat"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="3dp"
+        android:onClick="onTabClicked">
+
+
+        <ImageView
+            android:id="@+id/tab_iv_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:layout_centerHorizontal="true"
+            android:focusable="false"
+            android:scaleType="centerInside"
+            android:src="@drawable/ta_footer_image_chat_selector" />
+
+        <TextView
+            android:id="@+id/tab_tv_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tab_iv_chat"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="3dp"
+            android:text="对话"
+            android:textColor="@color/ta_color_text_normal"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/unread_tv_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/unread_count_bg"
+            android:gravity="center"
+            android:text="7"
+            android:textColor="@android:color/white"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/tab_layout_follow"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="3dp"
+        android:onClick="onTabClicked">
+
+
+        <ImageView
+            android:id="@+id/tab_iv_follow"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:layout_centerHorizontal="true"
+            android:focusable="false"
+            android:scaleType="centerInside"
+            android:src="@drawable/ta_footer_image_follow_selector" />
+
+        <TextView
+            android:id="@+id/tab_tv_follow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tab_iv_follow"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="3dp"
+            android:text="关注"
+            android:textColor="@color/ta_color_text_normal"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/unread_tv_follow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:visibility="invisible"
+            android:background="@drawable/unread_count_bg"
+            android:gravity="center"
+            android:text="7"
+            android:textColor="@android:color/white"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/tab_layout_profile"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="3dp"
+        android:onClick="onTabClicked">
+
+        <ImageView
+            android:id="@+id/tab_iv_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:layout_centerHorizontal="true"
+            android:focusable="false"
+            android:scaleType="centerInside"
+            android:src="@drawable/ta_footer_image_profile_selector" />
+
+        <TextView
+            android:id="@+id/tab_tv_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tab_iv_profile"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="3dp"
+            android:text="我"
+            android:textColor="@color/ta_color_text_normal"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+</LinearLayout>

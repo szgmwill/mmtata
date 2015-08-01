@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 单人聊天主页面布局 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg_gray">
+
+    <!-- 标题栏 -->
+    <include android:id="@+id/ta_include_topbar"
+        layout="@layout/ta_main_topbar" />
+
+    <!--所有聊天记录的展示-->
+    <!--下拉刷新处理-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ta_ll_bottom"
+        android:layout_below="@+id/ta_include_topbar">
+
+        <com.tata.imta.view.RTPullListView
+            android:id="@+id/ta_chat_msg_refresh_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp"
+            android:listSelector="@android:color/transparent"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+    <!-- 录音显示UI层-->
+    <LinearLayout
+        android:id="@+id/ta_rcChat_popup"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:visibility="gone" >
+
+        <include
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            layout="@layout/voice_rcd_hint_window" />
+    </LinearLayout>
+
+    <!-- 底部控件布局 -->
+    <LinearLayout
+        android:id="@+id/ta_ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" >
+
+        <!-- 底部按钮以及 编辑框-->
+        <RelativeLayout
+            android:id="@+id/ta_rl_layout_bottom"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/ta_chat_footer_bg" >
+
+            <!--文字或语音切换按钮-->
+            <ImageView
+                android:id="@+id/ta_iv_setting_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dip"
+                android:src="@drawable/ta_chat_footer_voice_icon"
+                android:background="@drawable/ta_chat_footer_voice_icon_bg" />
+
+            <!--第二个位置:文本框+表情 或 语音按住说话-->
+            <!--文字+表情-->
+            <RelativeLayout
+                android:id="@+id/ta_rl_layout_edit_text"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:layout_toLeftOf="@+id/ta_rl_chat_more_type"
+                android:layout_toRightOf="@+id/ta_iv_setting_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_centerVertical="true"
+                android:visibility="visible">
+
+                <!--自定义输入编辑器-->
+                <com.tata.imta.view.MyEditText
+                    android:id="@+id/ta_text_msg_input"
+                    android:layout_width="match_parent"
+                    android:layout_toLeftOf="@+id/ta_rl_emoji_image"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="@drawable/chat_input_bg"
+                    android:imeOptions="actionSend"
+                    android:paddingBottom="0dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="0dp"
+                    android:visibility="visible"/>
+
+                <!--表情打开-->
+                <RelativeLayout
+                    android:id="@+id/ta_rl_emoji_image"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginRight="6dp">
+
+                    <!--emoji 点击 -->
+                    <ImageView
+                        android:id="@+id/ta_iv_emoticons_normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ta_chat_footer_emoji_icon"
+                        android:visibility="visible" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <!--语音-->
+            <Button
+                android:id="@+id/ta_btn_send_voice"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:layout_toLeftOf="@+id/ta_rl_chat_more_type"
+                android:layout_toRightOf="@+id/ta_iv_setting_mode"
+                android:background="@drawable/chat_send_btn"
+                android:padding="1dp"
+                android:text="按住 说话"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+            <RelativeLayout
+                android:id="@+id/ta_rl_chat_more_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp">
+
+                <!-- 发送图片拍照 -->
+                <Button
+                    android:id="@+id/ta_btn_send_text"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ta_btn_send_selector"
+                    android:visibility="visible"
+                    android:text="发送"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"/>
+
+                <!-- 更多聊天类型切换 -->
+                <ImageView
+                    android:id="@+id/ta_iv_more_type"
+                    android:layout_width="60dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/ta_chat_footer_more_icon"
+                    android:visibility="gone"/>
+            </RelativeLayout>
+
+
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="@color/gray" />
+
+        <!-- 表情图片 -->
+        <LinearLayout
+            android:id="@+id/ta_ll_emoji_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/main_bg_gray"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <!--emoji表情图标填充-->
+            <android.support.v4.view.ViewPager
+                android:id="@+id/ta_vp_emoji"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:layout_gravity="center"
+                android:padding="10dp" />
+
+            <!-- 底部的小圆点 -->
+            <LinearLayout
+                android:id="@+id/ta_ll_dots_container"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- 更多类型选择层 -->
+        <LinearLayout
+            android:id="@+id/ta_more_type_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/main_bg_gray"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:visibility="gone"
+            android:weightSum="3" >
+
+            <!--以下为各个功能图标-->
+            <ImageView
+                android:id="@+id/to_gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ta_chat_footer_pic" />
+
+            <ImageView
+                android:id="@+id/to_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ta_chat_footer_camera" />
+
+            <ImageView
+                android:id="@+id/to_confirm"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ta_notify_avatar" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

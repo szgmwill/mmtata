@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer name="app_version_code">2</integer>
+    <string name="app_version_name">1.0</string>
+
+</resources>

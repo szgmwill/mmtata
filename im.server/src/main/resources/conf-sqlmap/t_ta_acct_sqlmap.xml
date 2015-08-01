@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 交易订单提现等相关操作 -->
+<mapper namespace="com.mmtata.im.server.dao.TradeDao">
+    <resultMap id="OrderResultMap" type="com.mmtata.im.server.bean.AcctOrder">
+	    <result property="order_id" column="order_id" />
+		<result property="user_id" column="user_id" />
+		<result property="target_id" column="target_id" />
+		<result property="fee" column="fee" />
+		<result property="fee_unit" column="fee_unit" />
+		<result property="fee_duration" column="fee_duration" />
+		<result property="expire_time" column="expire_time" />
+		<result property="total_amt" column="total_amt" />
+		<result property="pay_type" column="pay_type" />
+		<result property="pay_trade_no" column="pay_trade_no" />
+		<result property="status" column="status" />
+		<result property="create_time" column="create_time" />
+		<result property="last_update_time" column="last_update_time" />
+	</resultMap>
+	
+    <resultMap id="WithdrawResultMap" type="com.mmtata.im.server.bean.AcctWithdraw">
+	    <result property="withdraw_id" column="withdraw_id" />
+		<result property="user_id" column="user_id" />
+		<result property="balance" column="balance" />
+		<result property="amount" column="amount" />
+		<result property="channel" column="channel" />
+		<result property="status" column="status" />
+		<result property="comment" column="comment" />
+		<result property="result" column="result" />
+		<result property="trade_no" column="trade_no" />
+		<result property="create_time" column="create_time" />
+		<result property="last_update_time" column="last_update_time" />
+	</resultMap>
+    
+    <!-- 账户详情 -->
+    <resultMap id="AcctInfoResultMap" type="com.mmtata.im.server.bean.AcctInfo">
+	    <result property="user_id" column="user_id" />
+		<result property="balance" column="balance" />
+		<result property="withdraw_amt" column="withdraw_amt" />
+		<result property="status" column="status" />
+		<result property="pay_pw" column="pay_pw" />
+		<result property="create_time" column="create_time" />
+		<result property="last_update_time" column="last_update_time" />
+	</resultMap>
+    
+    <resultMap id="OrderListItemMap" type="com.mmtata.im.server.bean.OrderListItem">
+	    
+		<result property="my_id" column="user_id" />
+		<result property="target_id" column="target_id" />
+		<result property="target_nick" column="target_nick" />
+		<result property="order_id" column="order_id" />
+		<result property="type" column="type" />
+		<result property="fee" column="fee" />
+		<result property="fee_unit" column="fee_unit" />
+		<result property="fee_duration" column="fee_duration" />
+		<result property="expire_time" column="expire_time" />
+		<result property="total_amt" column="total_amt" />
+		<result property="pay_type" column="pay_type" />
+		<result property="status" column="status" />
+		<result property="create_time" column="create_time" />
+	</resultMap>
+    
+    <sql id="t_ta_acct_order_column">
+		order_id,user_id,target_id,fee,fee_unit,fee_duration,buy_num,expire_time,total_amt,pay_type,
+		pay_trade_no,status,create_time,last_update_time
+	</sql>
+    
+    <sql id="t_ta_acct_withdraw_column">
+		withdraw_id,user_id,balance,amount,channel,status,comment,result,trade_no,create_time,last_update_time
+	</sql>
+    
+    <sql id="t_ta_acct_info_column">
+		user_id, balance, withdraw_amt, status, pay_pw, create_time, last_update_time
+	</sql>
+    
+    <select id="queryOrderList" resultMap="OrderResultMap">
+        select
+        	<include refid="t_ta_acct_order_column" />
+       	from
+       		mmtata.t_ta_acct_order
+       	<where>
+        	<if test="order_id != null">order_id = #{order_id}</if>
+        	<if test="user_id != null">and user_id = #{user_id}</if>
+        	<if test="target_id != null">and target_id = #{target_id}</if>
+        	<if test="status != null">and status = #{status}</if>
+		</where>
+        order by create_time desc
+    </select>
+    
+    <select id="queryWithdrawList" resultMap="WithdrawResultMap" parameterType="java.util.Map">
+        select
+        	<include refid="t_ta_acct_withdraw_column" />
+       	from
+       		mmtata.t_ta_acct_withdraw
+       	<where>
+        	<if test="withdraw_id != null">withdraw_id = #{withdraw_id}</if>
+        	<if test="user_id != null">and user_id = #{user_id}</if>
+        	<if test="status != null">and status = #{status}</if>
+		</where>
+        order by create_time desc
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+    
+    <select id="queryAcctInfo" resultMap="AcctInfoResultMap">
+        select
+        	<include refid="t_ta_acct_info_column" />
+       	from
+       		mmtata.t_ta_acct_info
+       	where
+       		user_id = #{user_id}
+    </select>
+    
+    <insert id="addNewOrder" parameterType="com.mmtata.im.server.bean.AcctOrder" 
+        useGeneratedKeys="true" keyProperty="order_id">
+        
+        INSERT INTO
+		mmtata.t_ta_acct_order
+		(
+		user_id,
+		target_id,
+		fee,
+		fee_unit,
+		fee_duration,
+		buy_num,
+		expire_time,
+		total_amt,
+		pay_type,
+		pay_trade_no,
+		status,
+		create_time,
+		last_update_time
+		)
+		VALUES
+		(
+		#{user_id},
+		#{target_id},
+		#{fee},
+		#{fee_unit},
+		#{fee_duration},
+		#{buy_num},
+		#{expire_time},
+		#{total_amt},
+		#{pay_type},
+		#{pay_trade_no},
+		#{status},
+		now(),
+		now()
+		)
+        
+    </insert>
+    
+    <insert id="addNewWithdraw" parameterType="com.mmtata.im.server.bean.AcctWithdraw" 
+        useGeneratedKeys="true" keyProperty="withdraw_id">
+        
+        INSERT INTO
+		mmtata.t_ta_acct_withdraw
+		(
+		user_id,
+		balance,
+		amount,
+		channel,
+		status,
+		comment,
+		result,
+		trade_no,
+		create_time,
+		last_update_time
+		)
+		VALUES
+		(
+		#{user_id},
+		#{balance},
+		#{amount},
+		#{channel},
+		#{status},
+		#{comment},
+		#{result},
+		#{trade_no},
+		now(),
+		now()
+		)
+        
+    </insert>
+    
+    <insert id="addNewAcctInfo" parameterType="com.mmtata.im.server.bean.AcctInfo">
+        
+        INSERT INTO
+		mmtata.t_ta_acct_info
+		(
+		user_id, 
+		balance, 
+		withdraw_amt, 
+		status, 
+		pay_pw, 
+		create_time, 
+		last_update_time
+		)
+		VALUES
+		(
+		#{user_id},
+		#{balance},
+		#{withdraw_amt},
+		#{status},
+		#{pay_pw},
+		now(),
+		now()
+		)
+    </insert>
+    
+    <update id="updateOrderStatus" parameterType="com.mmtata.im.server.bean.AcctOrder">
+        update 
+        	mmtata.t_ta_acct_order
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="fee != null">fee = #{fee},</if>
+            <if test="fee_unit != null">fee_unit = #{fee_unit},</if>
+            <if test="fee_duration > 0">fee_duration = #{fee_duration},</if>
+            <if test="buy_num > 0">buy_num = #{buy_num},</if>
+            <if test="expire_time != null">expire_time = #{expire_time},</if>
+            <if test="total_amt != null">total_amt = #{total_amt},</if>
+            <if test="pay_type != null">pay_type = #{pay_type},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="pay_trade_no != null">pay_trade_no = #{pay_trade_no},</if>
+			last_update_time = now()
+        </trim>
+        where
+        	order_id = #{order_id}
+    </update>
+    
+    <update id="updateWithdrawStatus" parameterType="com.mmtata.im.server.bean.AcctWithdraw">
+        update 
+        	mmtata.t_ta_acct_withdraw
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="status != null">status = #{status},</if>
+            <if test="comment != null">comment = #{comment},</if>
+            <if test="result != null">result = #{result},</if>
+            <if test="trade_no != null">trade_no = #{trade_no},</if>
+			last_update_time = now()
+        </trim>
+        where
+        	withdraw_id = #{withdraw_id}
+    </update>
+    
+    <update id="updateAcctInfo" parameterType="com.mmtata.im.server.bean.AcctInfo">
+        update 
+        	mmtata.t_ta_acct_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="status != null">status = #{status},</if>
+            <if test="balance != null">balance = #{balance},</if>
+            <if test="withdraw_amt != null">withdraw_amt = #{withdraw_amt},</if>
+			last_update_time = now()
+        </trim>
+        where
+        	user_id = #{user_id}
+        and
+        	last_update_time = #{last_update_time} ##确保更新准确
+    </update>
+    
+    <!-- 查询我的消费订单明细 -->
+    <select id="queryMyOrderList" resultMap="OrderListItemMap" parameterType="java.util.Map">
+		SELECT 
+		  order_row.*,
+		  user_info.nick AS target_nick 
+		FROM
+		  (SELECT 
+		    #{user_id} as user_id,
+		    (
+		      CASE
+		        WHEN (user_id = #{user_id}) 
+		        THEN target_id 
+		        ELSE user_id 
+		      END
+		    ) AS target_id,
+		    (
+		      CASE
+		        WHEN (user_id = #{user_id}) 
+		        THEN 1 
+		        ELSE 2 
+		      END
+		    ) AS `type`,
+		    order_id,
+		    fee,
+		    fee_unit,
+		    fee_duration,
+		    buy_num,
+		    expire_time,
+		    total_amt,
+		    pay_type,
+		    `status`,
+		    create_time 
+		  FROM
+		    mmtata.t_ta_acct_order t 
+		  WHERE (user_id = #{user_id} 
+		      OR target_id = #{user_id}) 
+		    AND STATUS IN ('PAID', 'DONE')) order_row 
+		  LEFT JOIN mmtata.t_ta_user_info user_info 
+		    ON (
+		      order_row.target_id = user_info.user_id
+		    )
+		<where>
+		    <if test="type != null and type > 0">order_row.type = #{type}</if>
+		    <if test="status != null">and order_row.status = #{status}</if>
+		</where> 
+		ORDER BY order_row.create_time DESC 
+		LIMIT #{offset},#{limit}
+    </select>
+    
+    <select id="queryTargetOrderList" resultMap="OrderResultMap">
+        select
+        	<include refid="t_ta_acct_order_column" />
+       	from
+       		mmtata.t_ta_acct_order
+		WHERE 
+			user_id = #{user_id} 
+		AND 
+			target_id = #{target_id} 
+		<if test="status != null">
+		    AND `status` = #{status}
+		</if>	
+		ORDER BY create_time DESC 
+    </select>
+</mapper>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_gray" >
+
+    <RelativeLayout
+        android:id="@+id/title_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/common_top_title_bar_height"
+        android:layout_alignParentTop="true"
+        android:background="@color/common_top_title_bar">
+
+        <ImageView
+            android:id="@+id/iv_top_bar_logo"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/app_logo"
+            android:layout_alignParentLeft="true"
+            android:layout_centerHorizontal="true"
+            android:padding="5dp"
+            android:scaleType="centerInside"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/iv_top_bar_logo"
+            android:text="在线(女)"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
+
+    </RelativeLayout>
+
+
+    <!--中间的主内容面板-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ta_main_footer"
+        android:layout_below="@+id/title_bar">
+
+        <android.support.v4.view.ViewPager
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/id_main_fragment_viewpager"/>
+
+    </RelativeLayout>
+
+    <include android:id="@+id/ta_main_footer"
+        layout="@layout/ta_main_footer" />
+</RelativeLayout>

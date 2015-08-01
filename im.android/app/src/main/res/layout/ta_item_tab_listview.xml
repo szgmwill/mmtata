@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/ta_rl_tablist_item"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/ta_rl_pressed_selector"
+        android:clickable="true" >
+
+        <TextView
+            android:id="@+id/ta_tv_tab_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:text="我要做你老婆"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/ta_iv_tab_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ta_ic_selector"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

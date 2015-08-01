@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 中间各版块内容 fragment模块 -->
+    <FrameLayout
+        android:id="@+id/ta_main_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- 中间各fragment展示和切换 -->
+
+    </FrameLayout>
+
+    <!--底部功能菜单-->
+    <include android:id="@+id/ta_main_footer"
+        layout="@layout/ta_main_footer" />
+</RelativeLayout>

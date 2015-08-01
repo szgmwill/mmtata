@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--用户个人详情页-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg_gray">
+
+    <include android:id="@+id/ta_include_user_detail"
+        layout="@layout/ta_main_topbar" />
+
+
+    <!-- 采用滚动布局 -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ta_include_user_detail"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- 头像展示 -->
+            <RelativeLayout
+                android:id="@+id/ta_user_detail_rl_avatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <!--网格填充头像列表-->
+                <com.tata.imta.view.MyGridView
+                    android:id="@+id/ta_gv_user_detail_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:verticalSpacing="5dp"
+                    android:horizontalSpacing="5dp"
+                    android:numColumns="4"
+                    android:visibility="gone"/>
+            </RelativeLayout>
+
+            <!-- 以下每一个relative 都代表功能点一行内容  -->
+            <RelativeLayout
+                android:id="@+id/ta_user_detail_re_setting"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/btn_list_item_bg"
+                android:clickable="true">
+
+                <RelativeLayout
+                    android:id="@+id/ta_user_detail_rl_sexage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp">
+
+                    <include layout="@layout/ta_item_sex_age"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="40dp"
+                    android:layout_toRightOf="@+id/ta_user_detail_rl_sexage">
+
+                    <TextView
+                        android:id="@+id/ta_user_detail_tv_xinzuo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:text="射手座"
+                        android:textColor="@color/ta_main_text_color"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/ta_user_detail_tv_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/ta_user_detail_tv_xinzuo"
+                        android:layout_marginLeft="15dp"
+                        android:text="深圳市"
+                        android:textColor="@color/ta_main_text_color"
+                        android:textSize="16sp" />
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_alignParentRight="true"
+                        android:paddingRight="5dp">
+
+                        <include layout="@layout/ta_item_unit_price" />
+
+                    </RelativeLayout>
+
+                    <!--每一行之间的分隔带-->
+                    <!--<View
+                        android:layout_width="fill_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginRight="20dp"
+                        android:background="#dadada" />-->
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ta_user_detail_rl_sign"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/btn_list_item_bg"
+                android:clickable="true">
+
+                <TextView
+                    android:id="@+id/ta_user_detail_tv_sign"
+                    android:layout_width="85dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="10dp"
+                    android:text="个性签名"
+                    android:textSize="16sp"
+                    android:textColor="@color/gray"/>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_toRightOf="@+id/ta_user_detail_tv_sign">
+
+                    <TextView
+                        android:id="@+id/ta_user_detail_tv_sign_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:text="哥哥快来哦!"
+                        android:textColor="@color/ta_main_text_color"
+                        android:textSize="16sp" />
+
+
+                    <!--每一行之间的分隔带-->
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginRight="20dp"
+                        android:background="@color/ta_color_main_gap_line" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ta_user_detail_rl_ability"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="45dp"
+                android:background="@drawable/btn_list_item_bg"
+                android:clickable="true">
+
+                <TextView
+                    android:id="@+id/ta_user_detail_tv_ability"
+                    android:layout_width="85dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="10dp"
+                    android:text="我的类型"
+                    android:textSize="16sp"
+                    android:textColor="@color/gray"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/ta_user_detail_tv_ability"
+                    android:padding="5dp">
+
+                    <!--网格填充-->
+                    <com.tata.imta.view.MyGridView
+                        android:id="@+id/ta_gv_user_detail_ability"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:verticalSpacing="2dp"
+                        android:horizontalSpacing="2dp"
+                        android:numColumns="3"
+                        android:visibility="gone"/>
+
+                </RelativeLayout>
+
+                <!--每一行之间的分隔带-->
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_toRightOf="@+id/ta_user_detail_tv_ability"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="20dp"
+                    android:background="@color/ta_color_main_gap_line" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/ta_user_detail_rl_career"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/btn_list_item_bg"
+                android:clickable="true">
+
+                <TextView
+                    android:id="@+id/ta_user_detail_tv_career"
+                    android:layout_width="85dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="10dp"
+                    android:text="职业"
+                    android:textSize="16sp"
+                    android:textColor="@color/gray"/>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_toRightOf="@+id/ta_user_detail_tv_career">
+
+                    <TextView
+                        android:id="@+id/ta_user_detail_tv_sign_career"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:text="模特"
+                        android:textColor="@color/ta_main_text_color"
+                        android:textSize="16sp" />
+
+
+                    <!--每一行之间的分隔带-->
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginRight="20dp"
+                        android:background="@color/ta_color_main_gap_line" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ta_user_detail_rl_lan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="45dp"
+                android:background="@drawable/btn_list_item_bg"
+                android:clickable="true">
+
+                <TextView
+                    android:id="@+id/ta_user_detail_tv_lan"
+                    android:layout_width="85dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="10dp"
+                    android:text="语言"
+                    android:textSize="16sp"
+                    android:textColor="@color/gray"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/ta_user_detail_tv_lan"
+                    android:padding="6dp">
+
+                    <!--网格填充语言-->
+                    <com.tata.imta.view.MyGridView
+                        android:id="@+id/ta_gv_user_detail_lan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:verticalSpacing="2dp"
+                        android:horizontalSpacing="2dp"
+                        android:numColumns="4"
+                        android:visibility="gone"/>
+
+                </RelativeLayout>
+
+                <!--每一行之间的分隔带-->
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_toRightOf="@+id/ta_user_detail_tv_lan"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="20dp"
+                    android:background="@color/ta_color_main_gap_line" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ta_user_detail_rl_pingjia"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/btn_list_item_bg"
+                android:clickable="true">
+
+                <TextView
+                    android:id="@+id/ta_user_detail_tv_pingjia"
+                    android:layout_width="85dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="10dp"
+                    android:text="评价"
+                    android:textSize="16sp"
+                    android:textColor="@color/gray"/>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/ta_user_detail_tv_pingjia">
+
+                    <!-- ratingbar -->
+                    <RatingBar
+                        android:id="@+id/ta_rb_user_detail_pingjia"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:isIndicator="true"
+                        android:numStars="5"
+                        android:rating="5"
+                        android:stepSize="0.5"/>
+                    <!--每一行之间的分隔带-->
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginRight="20dp"
+                        android:background="#dadada" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginBottom="10dp">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                    <RelativeLayout
+                        android:id="@+id/ta_user_detail_btn_follow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/ta_btn_yuanjiao_pink_selector">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true">
+
+                            <ImageView
+                                android:id="@+id/ta_user_detail_iv_follow_icon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ta_add_follow_icon" />
+                            <TextView
+                                android:id="@+id/ta_tv_user_detail_follow"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toRightOf="@+id/ta_user_detail_iv_follow_icon"
+                                android:text="关注"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"/>
+
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/ta_user_detail_btn_buy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/ta_btn_yuanjiao_girl_selector">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true">
+
+                            <ImageView
+                                android:id="@+id/ta_user_detail_iv_buy_icon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ta_buy_icon" />
+                            <TextView
+                                android:id="@+id/ta_tv_user_detail_buy"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toRightOf="@+id/ta_user_detail_iv_buy_icon"
+                                android:text="买Ta"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"/>
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <!--条件筛选面板-->
+    <RelativeLayout
+        android:id="@+id/ta_rl_pay_choice"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <Button
+                android:id="@+id/ta_btn_pay_wx"
+                android:layout_width="fill_parent"
+                android:layout_height="49dp"
+                android:text="微信支付"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:background="@drawable/ta_btn_boy_selector"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#dadada" />
+            <Button
+                android:id="@+id/ta_btn_pay_zfb"
+                android:layout_width="fill_parent"
+                android:layout_height="49dp"
+                android:text="支付宝支付"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:background="@drawable/ta_btn_girl_selector"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#dadada" />
+
+            <Button
+                android:id="@+id/ta_btn_pay_acct"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:text="余额支付"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:background="@drawable/ta_btn_pink_selector"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#dadada" />
+
+            <Button
+                android:id="@+id/ta_btn_pay_cancel"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:text="取消"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:background="@drawable/ta_btn_cancel_selector"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

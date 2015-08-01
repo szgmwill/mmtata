@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!-- 列表明细 -->
+    <com.tata.imta.view.PaginationListView
+        android:id="@+id/ta_lv_trade_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="@color/common_lucency"
+        android:divider="@null"/>
+
+    <!--<ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="@color/common_lucency"
+        android:divider="@null"/>-->
+
+</RelativeLayout>

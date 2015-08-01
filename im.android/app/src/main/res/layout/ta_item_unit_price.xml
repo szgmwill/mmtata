@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ta_item_unit_price_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true">
+
+    <!-- 收费情况 -->
+    <RelativeLayout
+        android:id="@+id/ta_rl_show_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/ta_item_unit_price_iv_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+
+            android:src="@drawable/ta_price_icon"/>
+
+        <TextView
+            android:id="@+id/ta_item_unit_price_tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/ta_item_unit_price_iv_icon"
+            android:layout_marginLeft="2dp"
+            android:layout_centerVertical="true"
+            android:text="20"
+            android:textSize="14sp"
+            android:textColor="@color/ta_unit_price_color"
+            />
+        <TextView
+            android:id="@+id/ta_item_unit_price_tv_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="2dp"
+            android:layout_toRightOf="@+id/ta_item_unit_price_tv_price"
+            android:text="/天"
+            android:textSize="14sp"
+            android:textColor="@color/gray" />
+
+    </RelativeLayout>
+
+    <!-- 免费情况 -->
+    <RelativeLayout
+        android:id="@+id/ta_rl_show_free"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="2dp"
+            android:text="免费"
+            android:textSize="14sp"
+            android:textColor="@color/gray" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

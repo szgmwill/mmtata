@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray">
+
+    <!--头部-->
+    <RelativeLayout
+        android:id="@+id/ta_main_title_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/common_top_title_bar_height"
+        android:layout_alignParentTop="true"
+        android:background="@color/ta_main_topbar_bg">
+
+        <TextView
+            android:id="@+id/ta_tv_topbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="我的关注"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
+    </RelativeLayout>
+
+    <!-- 面板的错误提示 -->
+    <RelativeLayout
+        android:id="@+id/ta_rl_error_tips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ta_main_title_bar"
+        android:visibility="visible">
+
+        <!-- 网络故障时的提示标题 -->
+        <include layout="@layout/ta_topbar_error_tips"/>
+
+    </RelativeLayout>
+
+    <!-- 空白结果页 -->
+    <RelativeLayout
+        android:id="@+id/ta_fragment_rl_norecord"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/ta_rl_error_tips"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/ta_fragment_iv_norecord"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ta_blank"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="你目前还没有关注好友哦,去发现Ta吧"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/ta_fragment_iv_norecord"/>
+
+    </RelativeLayout>
+
+
+    <!-- 上下拉刷新 实现-->
+    <com.tata.imta.view.PullToRefreshView
+        android:id="@+id/ta_follow_pullrefresh_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!-- 实现向左滑动的效果listview -->
+        <!--<com.tata.imta.view.swipe.SwipeMenuListView
+            android:id="@+id/frag_follow_user_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="@color/common_lucency"
+            android:divider="@null"/>-->
+
+        <!--PullToRefreshView 布局应该有三大块内容,前后各是头部刷新和底部刷新,通过代码
+            动态添加,中间这里放置listview,gridview或者scrollview的布局 ,PullToRefreshView
+	        要设置android:orientation="vertical"属性
+	        否则,显示不正确-->
+        <!-- 中间列表展示区 -->
+        <ListView
+            android:id="@+id/frag_follow_user_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="@color/common_lucency"
+            android:divider="@null"/>
+
+    </com.tata.imta.view.PullToRefreshView>
+
+</LinearLayout>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 单人聊天主页面布局 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/chat_bg_default">
+
+    <!-- 标题栏 -->
+    <RelativeLayout
+        android:id="@+id/rl_layout_title"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/title_bar"
+        android:gravity="center_vertical" >
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/title_btn_back"
+            android:onClick="back"
+            android:text="返回"
+            android:textColor="#fff"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="白富美"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/user_head_btn"
+            android:layout_width="67dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/title_btn_right"
+            android:src="@drawable/mm_title_btn_contact_normal" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_error_tips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_layout_title">
+
+        <!-- 网络故障时的提示标题 -->
+        <include android:id="@+id/chat_error_tips"
+            layout="@layout/ta_topbar_error_tips"/>
+
+    </RelativeLayout>
+
+    <!-- 底部控件布局 -->
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" >
+
+        <!-- 底部按钮以及 编辑框-->
+        <RelativeLayout
+            android:id="@+id/rl_layout_bottom"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/chat_footer_bg" >
+
+            <!--文字或语音切换按钮-->
+            <ImageView
+                android:id="@+id/iv_setting_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dip"
+                android:src="@drawable/chatting_setmode_msg_btn" />
+
+            <!--文字编辑框-->
+            <EditText
+                android:id="@+id/et_send_message"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/iv_more_type"
+                android:layout_toRightOf="@+id/iv_setting_mode"
+                android:background="@drawable/login_edit_normal"
+                android:singleLine="true"
+                android:textSize="18sp"
+                android:visibility="gone"/>
+
+            <!--语音按钮 与文字编辑框占位一致-->
+            <TextView
+                android:id="@+id/tv_btn_rcd"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/iv_more_type"
+                android:layout_toRightOf="@+id/iv_setting_mode"
+                android:background="@drawable/chat_send_btn"
+                android:gravity="center"
+                android:text="按住 说话"
+                android:textColor="@color/black"
+                android:visibility="visible" />
+
+            <!-- 发送图片拍照或更多聊天类型切换 -->
+            <ImageView
+                android:id="@+id/iv_more_type"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/send_selector"
+                android:visibility="visible"/>
+
+        </RelativeLayout>
+
+        <!-- 更多类型选择层 -->
+        <LinearLayout
+            android:id="@+id/more_type_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#eeeeeeee"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:visibility="visible"
+            android:weightSum="4" >
+
+            <!--以下为各个功能图标-->
+            <ImageView
+                android:id="@+id/to_gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/send_image_selector" />
+
+            <ImageView
+                android:id="@+id/to_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/take_photo_selector" />
+
+            <ImageView
+                android:id="@+id/iv_to_realtime_voice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/realtime_voice_selector"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/iv_to_realtime_video"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/realtime_voice_selector"
+                android:visibility="visible" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

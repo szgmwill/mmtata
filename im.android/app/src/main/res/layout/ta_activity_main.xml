@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 中间各版块内容 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ta_main_footer">
+
+        <android.support.v4.view.ViewPager
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ta_main_fragment_viewpager"/>
+
+    </RelativeLayout>
+
+    <!--底部功能菜单-->
+    <include android:id="@+id/ta_main_footer"
+        layout="@layout/ta_main_footer" />
+</RelativeLayout>

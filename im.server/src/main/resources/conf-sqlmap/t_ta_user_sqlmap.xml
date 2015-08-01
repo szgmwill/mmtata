@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 用户模块DB信息表 -->
+<mapper namespace="com.mmtata.im.server.dao.UserBaseDao">
+	<resultMap id="UserLoginResultMap" type="com.mmtata.im.server.bean.UserLogin">
+		<result property="pid" column="pid" />
+		<result property="user_id" column="user_id" />
+		<result property="status" column="status" />
+		<result property="create_time" column="create_time" />
+	</resultMap>
+	
+	<resultMap id="UserRegisterResultMap" type="com.mmtata.im.server.bean.UserRegister">
+		<result property="user_id" column="user_id" />
+		<result property="wx_open_id" column="wx_open_id" />
+		<result property="mobile" column="mobile" />
+		<result property="password" column="password" />
+		<result property="create_time" column="create_time" />
+	</resultMap>
+	
+	<resultMap id="UserBaseResultMap" type="com.mmtata.im.server.bean.UserBase">
+		<result property="user_id" column="user_id" />
+		<result property="nick" column="nick" />
+		<result property="head" column="head" />
+		<result property="sex" column="sex" />
+		<result property="birth" column="birth" />
+		<result property="career" column="career" />
+		<result property="location" column="location" />
+		<result property="sign" column="sign" />
+		<result property="create_time" column="create_time" />
+	</resultMap>
+	
+	<resultMap id="UserTabResultMap" type="com.mmtata.im.server.bean.TabInfo">
+		<result property="tab_type" column="tab_type" />
+		<result property="tab_name" column="tab_name" />
+		<result property="create_time" column="create_time" />
+		<result property="del_flag" column="del_flag" />
+	</resultMap>
+	
+	<resultMap id="UserImgResultMap" type="com.mmtata.im.server.bean.UserImg">
+	    <result property="pid" column="pid" />
+		<result property="user_id" column="user_id" />
+		<result property="index" column="index" />
+		<result property="url" column="url" />
+		<result property="create_time" column="create_time" />
+		<result property="last_update_time" column="last_update_time" />
+		<result property="del_flag" column="del_flag" />
+	</resultMap>
+	
+	<resultMap id="UserExtendResultMap" type="com.mmtata.im.server.bean.UserExtend">
+	    <result property="pid" column="pid" />
+		<result property="user_id" column="user_id" />
+		<result property="fee" column="fee" />
+		<result property="fee_unit" column="fee_unit" />
+		<result property="fee_duration" column="fee_duration" />
+		
+		<result property="allow_free_chat" column="allow_free_chat" />
+		<result property="bind_mobile" column="bind_mobile" />
+		<result property="wx_acct" column="wx_acct" />
+		<result property="zfb_acct" column="zfb_acct" />
+		<result property="zfb_nick" column="zfb_nick" />
+		<result property="feedback" column="feedback" />
+		<result property="order_num" column="order_num" />
+		
+		<result property="create_time" column="create_time" />
+		<result property="last_update_time" column="last_update_time" />
+		
+	</resultMap>
+	
+	<sql id="t_ta_user_register_column">
+		user_id, wx_open_id, mobile, password, create_time
+	</sql>
+	
+	<sql id="t_ta_user_login_column">
+		pid, user_id, status, create_time
+	</sql>
+	
+	<sql id="t_ta_user_base_column">
+		user_id, nick, head, sex, birth, career, location, sign, create_time, last_update_time, del_flag
+	</sql>
+	
+	<sql id="t_ta_user_tab_column">
+		pid, user_id, tab_type, tab_name, create_time, last_update_time, del_flag
+	</sql>
+	
+	<sql id="t_ta_user_img_column">
+		pid, user_id, `index`, url, create_time, last_update_time, del_flag
+	</sql>
+	
+	<sql id="t_ta_user_extend_column">
+		pid, user_id, fee, fee_unit, fee_duration, allow_free_chat, bind_mobile,
+		wx_acct, zfb_acct, zfb_nick, feedback, order_num, create_time, last_update_time
+	</sql>
+	
+	<!-- 注册新用户 -->
+	<insert id="registerUser" parameterType="com.mmtata.im.server.bean.UserRegister"
+		useGeneratedKeys="true" keyProperty="user_id">
+		
+	    INSERT INTO
+		mmtata.t_ta_register
+		(
+		wx_open_id,
+		mobile,
+		password,
+		create_time
+		)
+		VALUES
+		(
+		#{wx_open_id},
+		#{mobile},
+		#{password},
+		now()
+		)
+	</insert>
+	
+	<!-- 添加新用户信息 -->
+	<insert id="addNewUser" parameterType="com.mmtata.im.server.bean.UserBase">
+		
+	    INSERT INTO
+		mmtata.t_ta_user_info
+		(
+		<include refid="t_ta_user_base_column" />
+		)
+		VALUES
+		(
+		#{user_id},
+		#{nick},
+		#{head},
+		#{sex},
+		#{birth},
+		#{career},
+		#{location},
+		#{sign},
+		now(),
+		now(),
+		0
+		)
+	</insert>
+	
+	<!-- 新增用户标签 -->
+	<insert id="addUserTab" useGeneratedKeys="true" keyProperty="tab.tab_id">
+		
+	    INSERT INTO
+		mmtata.t_ta_user_tab
+		(
+		user_id,
+		tab_type,
+		tab_name,
+		create_time,
+		last_update_time, 
+		del_flag
+		)
+		VALUES
+		(
+		#{user_id},
+		#{tab.tab_type},
+		#{tab.tab_name},
+		now(),
+		now(),
+		0
+		)
+	</insert>
+	
+	<!-- 新增用户相册图片 -->
+	<insert id="addUserImg" parameterType="com.mmtata.im.server.bean.UserImg"
+		useGeneratedKeys="true" keyProperty="pid">
+		
+	    INSERT INTO
+		mmtata.t_ta_user_img
+		(
+		user_id,
+		`index`,
+		url,
+		create_time,
+		last_update_time, 
+		del_flag
+		)
+		VALUES
+		(
+		#{user_id},
+		#{index},
+		#{url},
+		now(),
+		now(),
+		0
+		)
+	</insert>
+	
+	<!-- 新增用户登录日志 -->
+	<insert id="addLoginLog" parameterType="com.mmtata.im.server.bean.UserLogin"
+		useGeneratedKeys="true" keyProperty="pid">
+		INSERT INTO
+		mmtata.t_ta_login_log
+		(
+		user_id,
+		status,
+		create_time
+		)
+		VALUES
+		(
+		#{user_id},
+		#{status},
+		now()
+		)
+	</insert>
+
+	<!-- 查询注册用户 -->
+	<select id="getRegisterUser" resultMap="UserRegisterResultMap">
+	    select
+	    	<include refid="t_ta_user_register_column" />
+	    from
+	    	mmtata.t_ta_register
+	    <where>
+	        <if test="openid != null">wx_open_id = #{openid}</if>
+	        <if test="mobile != null">OR mobile = #{mobile}</if>
+	    </where>
+	</select>
+	
+	<!-- 查询注册用户 -->
+	<select id="getRegisterUserByUserId" resultMap="UserRegisterResultMap">
+	    select
+	    	<include refid="t_ta_user_register_column" />
+	    from
+	    	mmtata.t_ta_register
+	    where
+	    	user_id = #{user_id}
+	</select>
+	
+	<!-- 查询用户基础信息 -->
+	<select id="queryUserBase" resultMap="UserBaseResultMap">
+	    select
+	    	<include refid="t_ta_user_base_column" />
+	    from
+	    	mmtata.t_ta_user_info
+	    where
+	    	user_id = #{user_id}
+	    and
+	    	del_flag = 0
+	</select>
+	
+	<!-- 最询最近一次登录登出信息 -->
+	<select id="queryLatestLoginByUserId" resultMap="UserLoginResultMap">
+	    select
+	    	<include refid="t_ta_user_login_column" />
+	    from
+	    	mmtata.t_ta_login_log
+	    where
+	    	user_id = #{user_id}
+	    <if test="status != null">
+	        and status = #{status}
+	    </if>
+	    order by create_time desc
+	    limit 1
+	</select>
+	
+	<select id="queryUserTab" resultMap="UserTabResultMap">
+	    select
+	    	<include refid="t_ta_user_tab_column" />
+	    from
+	    	mmtata.t_ta_user_tab
+	    where
+	    	user_id = #{user_id}
+	    and
+	    	del_flag = 0
+	</select>
+	
+	<select id="queryUserImg" resultMap="UserImgResultMap">
+	    select
+	    	<include refid="t_ta_user_img_column" />
+	    from
+	    	mmtata.t_ta_user_img
+	    where
+	    	user_id = #{user_id}
+	    and
+	    	del_flag = 0
+	</select>
+	
+	<update id="updateUser" parameterType="com.mmtata.im.server.bean.UserBase">
+	    update mmtata.t_ta_user_info
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="nick != null">nick = #{nick},</if>
+			<if test="head != null">head = #{head},</if>
+			<if test="sex != null">sex = #{sex},</if>
+			<if test="birth != null">birth = #{birth},</if>
+			<if test="career != null">career = #{career},</if>
+			<if test="location != null">location = #{location},</if>
+			<if test="sign != null">sign = #{sign},</if>
+			<if test="del_flag >= 0">del_flag = #{del_flag},</if>
+			last_update_time = now()
+		</trim>
+		where
+			user_id = #{user_id}
+	</update>
+	
+	<update id="updateUserTab" parameterType="com.mmtata.im.server.bean.TabInfo">
+	    update mmtata.t_ta_user_tab
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="tab.tab_type > 0">tab_type = #{tab.tab_type},</if>
+			<if test="tab.tab_name != null">tab_name = #{tab.tab_name},</if>
+			<if test="tab.del_flag >= 0">del_flag = #{tab.del_flag},</if>
+			last_update_time = now()
+		</trim>
+		where
+			user_id = #{user_id}
+	</update>
+	
+	
+	<update id="updateUserImg" parameterType="com.mmtata.im.server.bean.UserImg">
+	    update mmtata.t_ta_user_img
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="url != null">url = #{url},</if>
+			<if test="del_flag >= 0">del_flag = #{del_flag},</if>
+			last_update_time = now()
+		</trim>
+		where
+			user_id = #{user_id}
+	</update>
+	
+	<!-- 物理删除标签列表 -->
+	<delete id="deleteUserTab">
+	    delete from mmtata.t_ta_user_tab where user_id = #{user_id}
+	</delete>
+	
+	<!-- 物理删除头像列表 -->
+	<delete id="deleteUserImg">
+	    delete from mmtata.t_ta_user_img where user_id = #{user_id}
+	</delete>
+	
+	<!-- 查询在线用户列表(分页,并且程序要缓存) -->
+	<select id="findOnlineUserList" resultType="com.mmtata.im.server.bean.UserFind">
+	SELECT 
+		  t1.user_id as userId,
+		  t1.nick,
+		  t1.head,
+		  t1.`sex` as sex,
+		  t1.`birth`,
+		  t1.`sign`,
+		  t2.`fee`,
+		  t2.`fee_unit` as feeUnit,
+		  t2.`fee_duration` as feeDuration,
+		  t3.create_time  as lastLoginTime
+		FROM
+		  t_ta_user_info t1 
+		  INNER JOIN t_ta_user_extend t2 
+		    ON (t1.`user_id` = t2.`user_id`) 
+		  LEFT JOIN 
+		    (SELECT 
+		      user_id,
+		      create_time 
+		    FROM
+		      (SELECT 
+		        login.user_id,
+		        login.create_time,
+		        IF(
+		          @pa = login.user_id,
+		          @rank := @rank + 1,
+		          @rank := 1
+		        ) AS rank,
+		        @pa := login.user_id 
+		      FROM
+		        (SELECT 
+		          user_id,
+		          create_time 
+		        FROM
+		          t_ta_login_log 
+		        WHERE STATUS = 'IN' 
+		        ORDER BY user_id,
+		          create_time DESC) login,
+		        (SELECT 
+		          @rank := 0,
+		          @pa = NULL) tt) result 
+		    WHERE rank = 1
+		    group by user_id) t3 
+		    ON (t2.`user_id` = t3.user_id)
+		<where>
+		    <if test="sex != null">
+		        t1.`sex` = #{sex}
+		    </if>
+		    <!-- <if test="user_id != null">
+		        and t1.user_id != #{user_id}
+		    </if> -->
+		</where>
+		ORDER BY t3.create_time DESC 
+		LIMIT #{offset}, #{limit}
+	</select>
+	
+	<!-- 新增用户扩展信息 -->
+	<insert id="addNewUserExtend" parameterType="com.mmtata.im.server.bean.UserExtend"
+	    useGeneratedKeys="true" keyProperty="pid">
+	    
+	    INSERT INTO
+		mmtata.t_ta_user_extend
+		(
+		user_id,
+		fee,
+		fee_unit,
+		fee_duration,
+		allow_free_chat,
+		bind_mobile,
+		wx_acct,
+		zfb_acct,
+		zfb_nick,
+		feedback,
+		create_time,
+		last_update_time
+		)
+		VALUES
+		(
+		#{user_id},
+		#{fee},
+		#{fee_unit},
+		#{fee_duration},
+		#{allow_free_chat},
+		#{bind_mobile},
+		#{wx_acct},
+		#{zfb_acct},
+		#{zfb_nick},
+		#{feedback},
+		now(),
+		now()
+		)
+	    
+	</insert>
+	<!-- 修改用户扩展信息 -->
+	<update id="updateUserExtend" parameterType="com.mmtata.im.server.bean.UserExtend">
+	    update mmtata.t_ta_user_extend
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="fee != null">fee = #{fee},</if>
+			<if test="fee_unit != null">fee_unit = #{fee_unit},</if>
+			<if test="fee_duration > 0">fee_duration = #{fee_duration},</if>
+			<if test="allow_free_chat >= 0">allow_free_chat = #{allow_free_chat},</if>
+			<if test="bind_mobile != null">bind_mobile = #{bind_mobile},</if>
+			<if test="wx_acct != null">wx_acct = #{wx_acct},</if>
+			<if test="zfb_acct != null">zfb_acct = #{zfb_acct},</if>
+			<if test="zfb_nick != null">zfb_nick = #{zfb_nick},</if>
+			<if test="feedback != null">feedback = #{feedback},</if>
+			<if test="order_num > 0">order_num = #{order_num},</if>
+			last_update_time = now()
+		</trim>
+		where
+			user_id = #{user_id}
+	</update>
+	
+	<!-- 查询用户扩展信息 -->
+	<select id="queryUserExtendByUserId" resultMap="UserExtendResultMap">
+	    select
+	    	<include refid="t_ta_user_extend_column" />
+	    from
+	    	mmtata.t_ta_user_extend
+	    where
+	    	user_id = #{user_id}
+	</select>
+</mapper>
+

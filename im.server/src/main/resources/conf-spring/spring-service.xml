@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"  
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xmlns:tx="http://www.springframework.org/schema/tx"  
+    xmlns:task="http://www.springframework.org/schema/task"  
+    xsi:schemaLocation="  
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd  
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd  
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd  
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd"  
+    default-lazy-init="false">
+    
+	<!-- 定义受环境影响易变的变量 -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:config_${env}.properties</value>
+		</property>
+	</bean>
+
+	<context:annotation-config />
+	
+	<!-- scan all the component bean like @Service -->
+	<context:component-scan base-package="com.mmtata.im.server.service" />
+	
+	<!-- 开启事务注解驱动 -->  
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<!-- 事务管理器配置, 使用jdbc事务 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- 使用annotation定义事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="false" />
+	
+	
+	<!-- 数据源配置,使用应用内的DBCP数据库连接池   -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close" lazy-init="true">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+
+		<!-- 连接池中最多可空闲maxIdle个连接 -->
+	    <property name="maxIdle" value="${dbcp.maxIdle}" /> 
+	    <!-- 连接池中至少可空闲minIdle个连接 -->
+		<property name="minIdle" value="${dbcp.minIdle}" />
+		<!-- 连接池初始化时连接数量 -->
+		<property name="initialSize" value="${dbcp.initialSize}" />
+		<!-- 连接池支持的最大连接数 -->
+		<property name="maxActive" value="${dbcp.maxActive}" />
+		<!-- 连接池中连接用完时,新的请求等待时间,毫秒 -->
+		<property name="maxWait" value="${dbcp.maxWait}" />
+		<!-- 自动提交关闭 -->
+		<property name="defaultAutoCommit" value="true" />
+		<!-- 是否自动回收超时连接 -->
+		<property name="removeAbandoned" value="true" />
+		<!-- 超时时间(以秒数为单位) -->
+		<property name="removeAbandonedTimeout" value="${dbcp.removeAbandonedTimeout}" />
+		<!-- ，将会在回收事件后，在log中打印出回收Connection的错误信息，包括在哪个地方用了Connection却忘记关闭了，在调试的时候很有用 -->
+		<property name="logAbandoned" value="true" />
+		<!-- 那么在getNumActive()快要到getMaxActive()的时候，系统会进行无效的 Connection的回收，回收的Connection为removeAbandonedTimeout(默认300秒)中设置的秒数后没有使用的 
+			Connection -->
+		<property name="poolPreparedStatements" value="true" />
+
+		<!-- 每timeBetweenEvictionRunsMillis毫秒检查一次连接池中空闲的连接,把空闲时间超过minEvictableIdleTimeMillis毫秒的连接断开,直到连接池中的连接数到minIdle为止 -->
+		<property name="timeBetweenEvictionRunsMillis" value="${dbcp.timeBetweenEvictionRunsMillis}" />
+		<!-- 连接池中连接可空闲的时间(毫秒)，一定要小于mysql的wait_timeout的值 -->
+		<property name="minEvictableIdleTimeMillis" value="${dbcp.minEvictableIdleTimeMillis}" />
+		<!--<property name="numTestsPerEvictionRun" value="${dbcp.maxActive}" /> -->
+
+		<!-- 取得连接时验证其有效性 -->
+		<property name="testOnBorrow" value="true" />
+		<!-- 返回连接时验证其有效性 -->
+		<property name="testOnReturn" value="false" />
+		<!-- 指明连接是否被空闲连接回收器(如果有)进行检验.如果检测失败,则连接将被从池中去除 -->
+		<property name="testWhileIdle" value="true" />
+		
+		<property name="validationQuery" value="SELECT 1"/>
+	</bean>
+	
+	<!-- MyBatis配置 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:conf-sqlmap/Configuration.xml" />
+		<property name="mapperLocations" value="classpath:conf-sqlmap/t_*.xml" />
+	</bean>
+	
+	<!-- 
+	在spring里使用org.mybatis.spring.mapper.MapperScannerConfigurer 
+	进行自动扫描的时候，设置了sqlSessionFactory 的话，可能会导致PropertyPlaceholderConfigurer失效，
+	也就是用${jdbc.username}这样之类的表达式，将无法获取到properties文件里的内容。
+	 导致这一原因是因为，MapperScannerConigurer实际是在解析加载bean定义阶段的，这个时候要是设置sqlSessionFactory的话，
+	 会导致提前初始化一些类，这个时候，PropertyPlaceholderConfigurer还没来得及替换定义中的变量，
+	 导致把表达式当作字符串复制了。 但如果不设置sqlSessionFactory 属性的话，
+	 就必须要保证sessionFactory在spring中名称一定要是sqlSessionFactory ，
+	 否则就无法自动注入。又或者直接定义 MapperFactoryBean ，再或者放弃自动代理接口方式
+	 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.mmtata.im.server.dao" />
+		<!--<property name="sqlSessionFactory" ref="sqlSessionFactory" />-->
+		<!--<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />-->
+	</bean>
+	
+	<!-- Mybatis-Spring为我们提供了一个实现了SqlSession接口的SqlSessionTemplate类，它是线程安全的，
+	可以被多个Dao同时使用。同时它还跟Spring的事务进行了关联，
+	确保当前被使用的SqlSession是一个已经和Spring的事务进行绑定了的。
+	而且它还可以自己管理Session的提交和关闭。当使用了Spring的事务管理机制后，
+	SqlSession还可以跟着Spring的事务一起提交和回滚 -->
+	<!-- prototype is to fix warning:java.lang.UnsupportedOperationException: Manual close is not allowed over a Spring managed SqlSession -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
+    	<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+</beans>

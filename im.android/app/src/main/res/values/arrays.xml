@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="fee_type">
+        <item>免费</item>
+        <item>0.5元/分钟</item>
+        <item>5.0元/小时</item>
+        <item>20.0元/天</item>
+    </string-array>
+
+</resources>

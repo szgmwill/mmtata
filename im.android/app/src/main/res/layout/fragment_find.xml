@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--头部-->
+    <RelativeLayout
+        android:id="@+id/ta_main_title_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/common_top_title_bar_height"
+        android:layout_alignParentTop="true"
+        android:background="@color/ta_main_topbar_bg">
+
+        <RelativeLayout
+            android:id="@+id/ta_rl_topbar_filter"
+            android:layout_width="70dp"
+            android:layout_height="fill_parent"
+            android:clickable="true"
+            android:background="@drawable/ta_topbar_selector"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="在线"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/ta_tv_topbar_filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(女)"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"/>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/ta_tv_topbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="发现Ta"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/ta_rl_error_tips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ta_main_title_bar"
+        android:visibility="visible">
+
+        <!-- 网络故障时的提示标题 -->
+        <include layout="@layout/ta_topbar_error_tips"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/ta_fragment_find_rl_norecord"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/ta_rl_error_tips"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/ta_fragment_find_iv_norecord"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ta_blank"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="呜呜...找不到你的Ta啊"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/ta_fragment_find_iv_norecord"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ta_fragment_find_ll_list"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/ta_rl_error_tips"
+        android:background="@color/light_gray"
+        android:visibility="gone">
+
+        <!-- 上下拉刷新 实现-->
+        <com.tata.imta.view.PullToRefreshView
+            android:id="@+id/ta_find_pullrefresh_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <!--PullToRefreshView 布局应该有三大块内容,前后各是头部刷新和底部刷新,通过代码
+            动态添加,中间这里放置listview,gridview或者scrollview的布局 ,PullToRefreshView
+	        要设置android:orientation="vertical"属性
+	        否则,显示不正确-->
+            <!-- 中间列表展示区 -->
+            <ListView
+                android:id="@+id/frag_find_user_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cacheColorHint="@color/common_lucency"
+                android:divider="@null"/>
+
+        </com.tata.imta.view.PullToRefreshView>
+
+
+    </LinearLayout>
+
+    <!--条件筛选面板-->
+    <RelativeLayout
+        android:id="@+id/ta_find_rl_choice"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/ta_find_btn_all"
+                android:layout_width="fill_parent"
+                android:layout_height="49dp"
+                android:text="全部"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:background="@drawable/ta_btn_cancel_selector"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#dadada" />
+            <Button
+                android:id="@+id/ta_find_btn_boy"
+                android:layout_width="fill_parent"
+                android:layout_height="49dp"
+                android:text="男"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:background="@drawable/ta_btn_boy_selector"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#dadada" />
+            <Button
+                android:id="@+id/ta_find_btn_girl"
+                android:layout_width="fill_parent"
+                android:layout_height="49dp"
+                android:text="女"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:background="@drawable/ta_btn_girl_selector"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#dadada" />
+
+            <Button
+                android:id="@+id/ta_find_btn_cancel"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:text="取消"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:background="@drawable/ta_btn_cancel_selector"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

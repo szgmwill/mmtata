@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/ta_item_chat_re_parent"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/btn_list_item_bg"
+        android:clickable="true" >
+
+        <RelativeLayout
+            android:id="@+id/ta_item_chat_re_avatar"
+            android:layout_width="80dp"
+            android:padding="5dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true" >
+
+            <include layout="@layout/ta_item_user_avatar" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/ta_item_follow_rl_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="6dp"
+            android:layout_toRightOf="@id/ta_item_chat_re_avatar" >
+
+            <TextView
+                android:id="@+id/ta_item_chat_tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="飞鸟与鱼"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+
+            <TextView
+                android:id="@+id/ta_item_chat_tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_alignParentRight="true"
+                android:text="2015.05.05"
+                android:textColor="@color/dark_gray"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/ta_item_chat_tv_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="6dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="期待你下次光临哦"
+                android:textColor="@color/dark_gray"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/ta_item_chat_tv_unread"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignRight="@id/ta_item_chat_re_avatar"
+            android:layout_alignTop="@id/ta_item_chat_re_avatar"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/unread_count_bg"
+            android:gravity="center"
+            android:text="2"
+            android:textColor="#ffffff"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/ta_color_main_gap_line" />
+    </RelativeLayout>
+
+</RelativeLayout>
